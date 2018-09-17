@@ -1,0 +1,10 @@
+Add support for:
+
+- EAN-8, JAN-13, UPC-A, UPC-E, ISBN
+
+Code changes:
+
+Make PDF barcode extend new TwoDimensionalBarcode class
+
+Reactivate maven testing:
+In pom.xml file section "<!-- Not all tests are working by now -->"
