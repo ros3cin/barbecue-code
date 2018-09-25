@@ -28,6 +28,7 @@ package net.sourceforge.barbecue.linear.code128;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 public final class CharBuffer {
     private final int size;
@@ -35,7 +36,7 @@ public final class CharBuffer {
     
     public CharBuffer(int size) {
         this.size = size;
-        this.chars = new ArrayList<Character>();
+        this.chars = new FastList<Character>();
     }
     
     public int size() {

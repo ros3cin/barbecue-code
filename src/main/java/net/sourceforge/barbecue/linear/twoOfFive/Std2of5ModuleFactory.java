@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sourceforge.barbecue.Module;
+import org.apache.commons.collections4.map.HashedMap;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 /**
  * Standard 2 of 5 barcode module definitions.
@@ -37,7 +39,7 @@ import net.sourceforge.barbecue.Module;
  * @author <a href="mailto:james@metalskin.com">James Jenner</a>
  */
 class Std2of5ModuleFactory {
-    protected static final Map<String, int[]> SET = new HashMap<String, int[]>();
+    protected static final Map<String, int[]> SET = new HashedMap<String, int[]>();
     
     public static final Module START_CHAR = new Module(new int[] {3, 1, 3, 1, 1, 1});
     public static final Module END_CHAR = new Module(new int[] {3, 1, 1, 1, 3, 1});

@@ -34,6 +34,8 @@ import java.util.Map;
 import net.sourceforge.barbecue.BlankModule;
 import net.sourceforge.barbecue.Module;
 import net.sourceforge.barbecue.linear.upc.ModuleFactory;
+import org.apache.commons.collections4.map.HashedMap;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 /**
  * The EAN 13 barcode module definitions.
@@ -42,16 +44,16 @@ import net.sourceforge.barbecue.linear.upc.ModuleFactory;
  */
 final class EAN13ModuleFactory extends ModuleFactory {
 
-    protected static final List<String>        KEYS_LEFT_ODD       = new ArrayList<String>();
-    protected static final List<String>        KEYS_LEFT_EVEN      = new ArrayList<String>();
+    protected static final List<String>        KEYS_LEFT_ODD       = new FastList<String>();
+    protected static final List<String>        KEYS_LEFT_EVEN      = new FastList<String>();
 
-    protected static final Map<String, Module> SET_LEFT_ODD        = new HashMap<String, Module>();
-    protected static final Map<String, Module> SET_LEFT_EVEN       = new HashMap<String, Module>();
+    protected static final Map<String, Module> SET_LEFT_ODD        = new HashedMap<String, Module>();
+    protected static final Map<String, Module> SET_LEFT_EVEN       = new HashedMap<String, Module>();
 
     protected static final Module              RIGHT_MARGIN_EAN    = new BlankModule(
                                                                            7);
 
-    protected static final Map<String, int[]>  PARITY_TABLE        = new HashMap<String, int[]>();
+    protected static final Map<String, int[]>  PARITY_TABLE        = new HashedMap<String, int[]>();
 
     protected static final int                 ODD                 = 0;
     protected static final int                 EVEN                = 1;

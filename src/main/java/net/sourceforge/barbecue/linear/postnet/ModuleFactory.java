@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import net.sourceforge.barbecue.Module;
+import org.apache.commons.collections4.map.HashedMap;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 /**
  * @author Brendon Anderson
@@ -14,8 +16,8 @@ public class ModuleFactory {
 
     public static final PostNetModule START_STOP = new PostNetModule(new int[]{1});
 
-    private static final List<String> KEYS = new ArrayList<String>();
-    private static final Map<String, Module> SET = new HashMap<String, Module>();
+    private static final List<String> KEYS = new FastList<String>();
+    private static final Map<String, Module> SET = new HashedMap<String, Module>();
 
     static {
         initBaseSet();

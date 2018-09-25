@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.sourceforge.barbecue.Module;
+import org.apache.commons.collections4.map.HashedMap;
 
 /**
  * Code 128 barcode module definitions.
@@ -42,9 +43,9 @@ public final class ModuleFactory {
     private static final List<String> A_KEYS = new ArrayList<String>();
     private static final List<String> B_KEYS = new ArrayList<String>();
     private static final List<String> C_KEYS = new ArrayList<String>();
-    private static final Map<String, Module> A_SET = new HashMap<String, Module>();
-    private static final Map<String, Module> B_SET = new HashMap<String, Module>();
-    private static final Map<String, Module> C_SET = new HashMap<String, Module>();
+    private static final Map<String, Module> A_SET = new HashedMap<String, Module>();
+    private static final Map<String, Module> B_SET = new HashedMap<String, Module>();
+    private static final Map<String, Module> C_SET = new HashedMap<String, Module>();
     
     static {
         initA();

@@ -31,6 +31,7 @@ import java.util.List;
 
 import net.sourceforge.barbecue.output.Output;
 import net.sourceforge.barbecue.output.OutputException;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 /**
  * Specific implementation of Module that allows the grouping of multiple
@@ -48,7 +49,7 @@ public class CompositeModule extends Module {
      */
     public CompositeModule() {
         super(new int[0]);
-        modules = new ArrayList<Module>();
+        modules = new FastList<Module>();
     }
 
     /**

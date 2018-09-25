@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.Map;
 
 import net.sourceforge.barbecue.Module;
+import org.apache.commons.collections4.map.HashedMap;
+import org.eclipse.collections.impl.list.mutable.FastList;
 
 /**
  * The Code 39 barcode module definitions.
@@ -45,9 +47,9 @@ public final class ModuleFactory {
      */
     public static final Module START_STOP = new Module(new int[]{1, 2, 1, 1, 2, 1, 2, 1, 1});
 
-    private static final List<String> KEYS = new ArrayList<String>();
-    private static final Map<String, Module> SET = new HashMap<String, Module>();
-    private static final Map<Character, String> EXT_CHARS = new HashMap<Character, String>();
+    private static final List<String> KEYS = new FastList<String>();
+    private static final Map<String, Module> SET = new HashedMap<String, Module>();
+    private static final Map<Character, String> EXT_CHARS = new HashedMap<Character, String>();
     private static final List<String> ESCAPE_CHARS = new ArrayList<String>();
 
     static {

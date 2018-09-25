@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.sourceforge.barbecue.Module;
+import org.apache.commons.collections4.map.HashedMap;
 
 /**
  * Codabar barcode module definitions.
@@ -37,7 +38,7 @@ import net.sourceforge.barbecue.Module;
  * @author <a href="mailto:opensource@ianbourke.com">Ian Bourke</a>
  */
 final class ModuleFactory {
-	private static final Map<String, Module> SET = new HashMap<String, Module>();
+	private static final Map<String, Module> SET = new HashedMap<String, Module>();
 
 	static {
 		init();
