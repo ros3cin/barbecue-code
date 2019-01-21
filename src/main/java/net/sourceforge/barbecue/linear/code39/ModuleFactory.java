@@ -1,36 +1,36 @@
-/***********************************************************************************************************************
- Copyright (c) 2003, International Barcode Consortium
- All rights reserved.
-
- Redistribution and use in source and binary forms, with or without modification,
- are permitted provided that the following conditions are met:
-
- * Redistributions of source code must retain the above copyright notice, this list of
- conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list of
- conditions and the following disclaimer in the documentation and/or other materials
- provided with the distribution.
- * Neither the name of the International Barcode Consortium nor the names of any contributors may be used to endorse
- or promote products derived from this software without specific prior written permission.
-
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
- IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
- AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- POSSIBILITY OF SUCH DAMAGE.
- ***********************************************************************************************************************/
-
+/**
+ * ********************************************************************************************************************
+ *  Copyright (c) 2003, International Barcode Consortium
+ *  All rights reserved.
+ *
+ *  Redistribution and use in source and binary forms, with or without modification,
+ *  are permitted provided that the following conditions are met:
+ *
+ *  Redistributions of source code must retain the above copyright notice, this list of
+ *  conditions and the following disclaimer.
+ *  Redistributions in binary form must reproduce the above copyright notice, this list of
+ *  conditions and the following disclaimer in the documentation and/or other materials
+ *  provided with the distribution.
+ *  Neither the name of the International Barcode Consortium nor the names of any contributors may be used to endorse
+ *  or promote products derived from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ *  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ *  AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ *  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ *  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *  POSSIBILITY OF SUCH DAMAGE.
+ * *********************************************************************************************************************
+ */
 package net.sourceforge.barbecue.linear.code39;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import net.sourceforge.barbecue.Module;
 
 /**
@@ -43,11 +43,14 @@ public final class ModuleFactory {
     /**
      * The start and stop character for the barcode
      */
-    public static final Module START_STOP = new Module(new int[]{1, 2, 1, 1, 2, 1, 2, 1, 1});
+    public static final Module START_STOP = new Module(new int[] { 1, 2, 1, 1, 2, 1, 2, 1, 1 });
 
     private static final List<String> KEYS = new ArrayList<String>();
-    private static final Map<String, Module> SET = new HashMap<String, Module>();
-    private static final Map<Character, String> EXT_CHARS = new HashMap<Character, String>();
+
+    private static final Map<String, Module> SET = new org.apache.commons.collections4.map.HashedMap<String, Module>();
+
+    private static final Map<Character, String> EXT_CHARS = new org.apache.commons.collections4.map.HashedMap<Character, String>();
+
     private static final List<String> ESCAPE_CHARS = new ArrayList<String>();
 
     static {
@@ -55,104 +58,103 @@ public final class ModuleFactory {
         initExtendedSet();
     }
 
-    ///CLOVER:OFF
     /**
      * Cannot construct.
      */
     private ModuleFactory() {
     }
-    ///CLOVER:ON
 
+    // /CLOVER:ON
     /**
      * Initialise the module definitions.
      */
     private static void initBaseSet() {
         KEYS.add("0");
-        SET.put("0", new Module(new int[]{1, 1, 1, 2, 2, 1, 2, 1, 1}));
+        SET.put("0", new Module(new int[] { 1, 1, 1, 2, 2, 1, 2, 1, 1 }));
         KEYS.add("1");
-        SET.put("1", new Module(new int[]{2, 1, 1, 2, 1, 1, 1, 1, 2}));
+        SET.put("1", new Module(new int[] { 2, 1, 1, 2, 1, 1, 1, 1, 2 }));
         KEYS.add("2");
-        SET.put("2", new Module(new int[]{1, 1, 2, 2, 1, 1, 1, 1, 2}));
+        SET.put("2", new Module(new int[] { 1, 1, 2, 2, 1, 1, 1, 1, 2 }));
         KEYS.add("3");
-        SET.put("3", new Module(new int[]{2, 1, 2, 2, 1, 1, 1, 1, 1}));
+        SET.put("3", new Module(new int[] { 2, 1, 2, 2, 1, 1, 1, 1, 1 }));
         KEYS.add("4");
-        SET.put("4", new Module(new int[]{1, 1, 1, 2, 2, 1, 1, 1, 2}));
+        SET.put("4", new Module(new int[] { 1, 1, 1, 2, 2, 1, 1, 1, 2 }));
         KEYS.add("5");
-        SET.put("5", new Module(new int[]{2, 1, 1, 2, 2, 1, 1, 1, 1}));
+        SET.put("5", new Module(new int[] { 2, 1, 1, 2, 2, 1, 1, 1, 1 }));
         KEYS.add("6");
-        SET.put("6", new Module(new int[]{1, 1, 2, 2, 2, 1, 1, 1, 1}));
+        SET.put("6", new Module(new int[] { 1, 1, 2, 2, 2, 1, 1, 1, 1 }));
         KEYS.add("7");
-        SET.put("7", new Module(new int[]{1, 1, 1, 2, 1, 1, 2, 1, 2}));
+        SET.put("7", new Module(new int[] { 1, 1, 1, 2, 1, 1, 2, 1, 2 }));
         KEYS.add("8");
-        SET.put("8", new Module(new int[]{2, 1, 1, 2, 1, 1, 2, 1, 1}));
+        SET.put("8", new Module(new int[] { 2, 1, 1, 2, 1, 1, 2, 1, 1 }));
         KEYS.add("9");
-        SET.put("9", new Module(new int[]{1, 1, 2, 2, 1, 1, 2, 1, 1}));
+        SET.put("9", new Module(new int[] { 1, 1, 2, 2, 1, 1, 2, 1, 1 }));
         KEYS.add("A");
-        SET.put("A", new Module(new int[]{2, 1, 1, 1, 1, 2, 1, 1, 2}));
+        SET.put("A", new Module(new int[] { 2, 1, 1, 1, 1, 2, 1, 1, 2 }));
         KEYS.add("B");
-        SET.put("B", new Module(new int[]{1, 1, 2, 1, 1, 2, 1, 1, 2}));
+        SET.put("B", new Module(new int[] { 1, 1, 2, 1, 1, 2, 1, 1, 2 }));
         KEYS.add("C");
-        SET.put("C", new Module(new int[]{2, 1, 2, 1, 1, 2, 1, 1, 1}));
+        SET.put("C", new Module(new int[] { 2, 1, 2, 1, 1, 2, 1, 1, 1 }));
         KEYS.add("D");
-        SET.put("D", new Module(new int[]{1, 1, 1, 1, 2, 2, 1, 1, 2}));
+        SET.put("D", new Module(new int[] { 1, 1, 1, 1, 2, 2, 1, 1, 2 }));
         KEYS.add("E");
-        SET.put("E", new Module(new int[]{2, 1, 1, 1, 2, 2, 1, 1, 1}));
+        SET.put("E", new Module(new int[] { 2, 1, 1, 1, 2, 2, 1, 1, 1 }));
         KEYS.add("F");
-        SET.put("F", new Module(new int[]{1, 1, 2, 1, 2, 2, 1, 1, 1}));
+        SET.put("F", new Module(new int[] { 1, 1, 2, 1, 2, 2, 1, 1, 1 }));
         KEYS.add("G");
-        SET.put("G", new Module(new int[]{1, 1, 1, 1, 1, 2, 2, 1, 2}));
+        SET.put("G", new Module(new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 2 }));
         KEYS.add("H");
-        SET.put("H", new Module(new int[]{2, 1, 1, 1, 1, 2, 2, 1, 1}));
+        SET.put("H", new Module(new int[] { 2, 1, 1, 1, 1, 2, 2, 1, 1 }));
         KEYS.add("I");
-        SET.put("I", new Module(new int[]{1, 1, 2, 1, 1, 2, 2, 1, 1}));
+        SET.put("I", new Module(new int[] { 1, 1, 2, 1, 1, 2, 2, 1, 1 }));
         KEYS.add("J");
-        SET.put("J", new Module(new int[]{1, 1, 1, 1, 2, 2, 2, 1, 1}));
+        SET.put("J", new Module(new int[] { 1, 1, 1, 1, 2, 2, 2, 1, 1 }));
         KEYS.add("K");
-        SET.put("K", new Module(new int[]{2, 1, 1, 1, 1, 1, 1, 2, 2}));
+        SET.put("K", new Module(new int[] { 2, 1, 1, 1, 1, 1, 1, 2, 2 }));
         KEYS.add("L");
-        SET.put("L", new Module(new int[]{1, 1, 2, 1, 1, 1, 1, 2, 2}));
+        SET.put("L", new Module(new int[] { 1, 1, 2, 1, 1, 1, 1, 2, 2 }));
         KEYS.add("M");
-        SET.put("M", new Module(new int[]{2, 1, 2, 1, 1, 1, 1, 2, 1}));
+        SET.put("M", new Module(new int[] { 2, 1, 2, 1, 1, 1, 1, 2, 1 }));
         KEYS.add("N");
-        SET.put("N", new Module(new int[]{1, 1, 1, 1, 2, 1, 1, 2, 2}));
+        SET.put("N", new Module(new int[] { 1, 1, 1, 1, 2, 1, 1, 2, 2 }));
         KEYS.add("O");
-        SET.put("O", new Module(new int[]{2, 1, 1, 1, 2, 1, 1, 2, 1}));
+        SET.put("O", new Module(new int[] { 2, 1, 1, 1, 2, 1, 1, 2, 1 }));
         KEYS.add("P");
-        SET.put("P", new Module(new int[]{1, 1, 2, 1, 2, 1, 1, 2, 1}));
+        SET.put("P", new Module(new int[] { 1, 1, 2, 1, 2, 1, 1, 2, 1 }));
         KEYS.add("Q");
-        SET.put("Q", new Module(new int[]{1, 1, 1, 1, 1, 1, 2, 2, 2}));
+        SET.put("Q", new Module(new int[] { 1, 1, 1, 1, 1, 1, 2, 2, 2 }));
         KEYS.add("R");
-        SET.put("R", new Module(new int[]{2, 1, 1, 1, 1, 1, 2, 2, 1}));
+        SET.put("R", new Module(new int[] { 2, 1, 1, 1, 1, 1, 2, 2, 1 }));
         KEYS.add("S");
-        SET.put("S", new Module(new int[]{1, 1, 2, 1, 1, 1, 2, 2, 1}));
+        SET.put("S", new Module(new int[] { 1, 1, 2, 1, 1, 1, 2, 2, 1 }));
         KEYS.add("T");
-        SET.put("T", new Module(new int[]{1, 1, 1, 1, 2, 1, 2, 2, 1}));
+        SET.put("T", new Module(new int[] { 1, 1, 1, 1, 2, 1, 2, 2, 1 }));
         KEYS.add("U");
-        SET.put("U", new Module(new int[]{2, 2, 1, 1, 1, 1, 1, 1, 2}));
+        SET.put("U", new Module(new int[] { 2, 2, 1, 1, 1, 1, 1, 1, 2 }));
         KEYS.add("V");
-        SET.put("V", new Module(new int[]{1, 2, 2, 1, 1, 1, 1, 1, 2}));
+        SET.put("V", new Module(new int[] { 1, 2, 2, 1, 1, 1, 1, 1, 2 }));
         KEYS.add("W");
-        SET.put("W", new Module(new int[]{2, 2, 2, 1, 1, 1, 1, 1, 1}));
+        SET.put("W", new Module(new int[] { 2, 2, 2, 1, 1, 1, 1, 1, 1 }));
         KEYS.add("X");
-        SET.put("X", new Module(new int[]{1, 2, 1, 1, 2, 1, 1, 1, 2}));
+        SET.put("X", new Module(new int[] { 1, 2, 1, 1, 2, 1, 1, 1, 2 }));
         KEYS.add("Y");
-        SET.put("Y", new Module(new int[]{2, 2, 1, 1, 2, 1, 1, 1, 1}));
+        SET.put("Y", new Module(new int[] { 2, 2, 1, 1, 2, 1, 1, 1, 1 }));
         KEYS.add("Z");
-        SET.put("Z", new Module(new int[]{1, 2, 2, 1, 2, 1, 1, 1, 1}));
+        SET.put("Z", new Module(new int[] { 1, 2, 2, 1, 2, 1, 1, 1, 1 }));
         KEYS.add("-");
-        SET.put("-", new Module(new int[]{1, 2, 1, 1, 1, 1, 2, 1, 2}));
+        SET.put("-", new Module(new int[] { 1, 2, 1, 1, 1, 1, 2, 1, 2 }));
         KEYS.add(".");
-        SET.put(".", new Module(new int[]{2, 2, 1, 1, 1, 1, 2, 1, 1}));
+        SET.put(".", new Module(new int[] { 2, 2, 1, 1, 1, 1, 2, 1, 1 }));
         KEYS.add(" ");
-        SET.put(" ", new Module(new int[]{1, 2, 2, 1, 1, 1, 2, 1, 1}));
+        SET.put(" ", new Module(new int[] { 1, 2, 2, 1, 1, 1, 2, 1, 1 }));
         KEYS.add("$");
-        SET.put("$", new Module(new int[]{1, 2, 1, 2, 1, 2, 1, 1, 1}));
+        SET.put("$", new Module(new int[] { 1, 2, 1, 2, 1, 2, 1, 1, 1 }));
         KEYS.add("/");
-        SET.put("/", new Module(new int[]{1, 2, 1, 2, 1, 1, 1, 2, 1}));
+        SET.put("/", new Module(new int[] { 1, 2, 1, 2, 1, 1, 1, 2, 1 }));
         KEYS.add("+");
-        SET.put("+", new Module(new int[]{1, 2, 1, 1, 1, 2, 1, 2, 1}));
+        SET.put("+", new Module(new int[] { 1, 2, 1, 1, 1, 2, 1, 2, 1 }));
         KEYS.add("%");
-        SET.put("%", new Module(new int[]{1, 1, 1, 2, 1, 2, 1, 2, 1}));
+        SET.put("%", new Module(new int[] { 1, 1, 1, 2, 1, 2, 1, 2, 1 }));
     }
 
     /**
@@ -163,7 +165,6 @@ public final class ModuleFactory {
         ESCAPE_CHARS.add("/");
         ESCAPE_CHARS.add("+");
         ESCAPE_CHARS.add("%");
-
         EXT_CHARS.put(new Character('\000'), "%U");
         EXT_CHARS.put(new Character('\001'), "$A");
         EXT_CHARS.put(new Character('\002'), "$B");
@@ -196,8 +197,8 @@ public final class ModuleFactory {
         EXT_CHARS.put(new Character('\035'), "%C");
         EXT_CHARS.put(new Character('\036'), "%D");
         EXT_CHARS.put(new Character('\037'), "%E");
-        EXT_CHARS.put(new Character('\177'), "%T"); // Also %X, %Y, %Z
-
+        // Also %X, %Y, %Z
+        EXT_CHARS.put(new Character('\177'), "%T");
         EXT_CHARS.put(new Character('!'), "/A");
         EXT_CHARS.put(new Character('"'), "/B");
         EXT_CHARS.put(new Character('#'), "/C");
@@ -228,7 +229,6 @@ public final class ModuleFactory {
         EXT_CHARS.put(new Character('|'), "%Q");
         EXT_CHARS.put(new Character('}'), "%R");
         EXT_CHARS.put(new Character('~'), "%S");
-
         EXT_CHARS.put(new Character('a'), "+A");
         EXT_CHARS.put(new Character('b'), "+B");
         EXT_CHARS.put(new Character('c'), "+C");

@@ -1,63 +1,66 @@
-/***********************************************************************************************************************
- * Copyright (c) 2004, International Barcode Consortium
- * All rights reserved.
+/**
+ * ********************************************************************************************************************
+ *  Copyright (c) 2004, International Barcode Consortium
+ *  All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
+ *  Redistribution and use in source and binary forms, with or without modification,
+ *  are permitted provided that the following conditions are met:
  *
- * Redistributions of source code must retain the above copyright notice, this list of
- * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list of
- * conditions and the following disclaimer in the documentation and/or other materials
- * provided with the distribution.
- * Neither the name of the International Barcode Consortium nor the names of any contributors may be used to endorse
- * or promote products derived from this software without specific prior written permission.
+ *  Redistributions of source code must retain the above copyright notice, this list of
+ *  conditions and the following disclaimer.
+ *  Redistributions in binary form must reproduce the above copyright notice, this list of
+ *  conditions and the following disclaimer in the documentation and/or other materials
+ *  provided with the distribution.
+ *  Neither the name of the International Barcode Consortium nor the names of any contributors may be used to endorse
+ *  or promote products derived from this software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- ***********************************************************************************************************************/
-
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ *  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ *  AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ *  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ *  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *  POSSIBILITY OF SUCH DAMAGE.
+ * *********************************************************************************************************************
+ */
 package net.sourceforge.barbecue.linear.ean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import net.sourceforge.barbecue.BlankModule;
 import net.sourceforge.barbecue.Module;
 import net.sourceforge.barbecue.linear.upc.ModuleFactory;
 
 /**
  * The EAN 13 barcode module definitions.
- * 
+ *
  * @author <a href="mailto:james@metalskin.com">James Jenner</a>
  */
 final class EAN13ModuleFactory extends ModuleFactory {
 
-    protected static final List<String>        KEYS_LEFT_ODD       = new ArrayList<String>();
-    protected static final List<String>        KEYS_LEFT_EVEN      = new ArrayList<String>();
+    protected static final List<String> KEYS_LEFT_ODD = new ArrayList<String>();
 
-    protected static final Map<String, Module> SET_LEFT_ODD        = new HashMap<String, Module>();
-    protected static final Map<String, Module> SET_LEFT_EVEN       = new HashMap<String, Module>();
+    protected static final List<String> KEYS_LEFT_EVEN = new ArrayList<String>();
 
-    protected static final Module              RIGHT_MARGIN_EAN    = new BlankModule(
-                                                                           7);
+    protected static final Map<String, Module> SET_LEFT_ODD = new org.apache.commons.collections4.map.HashedMap<String, Module>();
 
-    protected static final Map<String, int[]>  PARITY_TABLE        = new HashMap<String, int[]>();
+    protected static final Map<String, Module> SET_LEFT_EVEN = new org.apache.commons.collections4.map.HashedMap<String, Module>();
 
-    protected static final int                 ODD                 = 0;
-    protected static final int                 EVEN                = 1;
+    protected static final Module RIGHT_MARGIN_EAN = new BlankModule(7);
 
-    public static final int                    LEFT_WIDTH_EAN      = 7;
-    public static final int                    GUARD_CHAR_SIZE_EAN = 0;
+    protected static final Map<String, int[]> PARITY_TABLE = new org.apache.commons.collections4.map.HashedMap<String, int[]>();
+
+    protected static final int ODD = 0;
+
+    protected static final int EVEN = 1;
+
+    public static final int LEFT_WIDTH_EAN = 7;
+
+    public static final int GUARD_CHAR_SIZE_EAN = 0;
 
     static {
         initBaseSet();
@@ -74,10 +77,8 @@ final class EAN13ModuleFactory extends ModuleFactory {
      */
     protected static void initBaseSet() {
         initRightSet();
-
         initLeftOddSet();
         initLeftEvenSet();
-
         /*
          * map - First number system digit 0 - second number system digit 1 -> 5
          * - manufacturer code characters
@@ -97,54 +98,74 @@ final class EAN13ModuleFactory extends ModuleFactory {
     protected static void initLeftOddSet() {
         // left side even parity
         KEYS_LEFT_ODD.add("0");
-        SET_LEFT_ODD.put("0", new Module(new int[] { 0, 3, 2, 1, 1 })); // 0001101
+        // 0001101
+        SET_LEFT_ODD.put("0", new Module(new int[] { 0, 3, 2, 1, 1 }));
         KEYS_LEFT_ODD.add("1");
-        SET_LEFT_ODD.put("1", new Module(new int[] { 0, 2, 2, 2, 1 })); // 0011001
+        // 0011001
+        SET_LEFT_ODD.put("1", new Module(new int[] { 0, 2, 2, 2, 1 }));
         KEYS_LEFT_ODD.add("2");
-        SET_LEFT_ODD.put("2", new Module(new int[] { 0, 2, 1, 2, 2 })); // 0010011
+        // 0010011
+        SET_LEFT_ODD.put("2", new Module(new int[] { 0, 2, 1, 2, 2 }));
         KEYS_LEFT_ODD.add("3");
-        SET_LEFT_ODD.put("3", new Module(new int[] { 0, 1, 4, 1, 1 })); // 0111101
+        // 0111101
+        SET_LEFT_ODD.put("3", new Module(new int[] { 0, 1, 4, 1, 1 }));
         KEYS_LEFT_ODD.add("4");
-        SET_LEFT_ODD.put("4", new Module(new int[] { 0, 1, 1, 3, 2 })); // 0100011
+        // 0100011
+        SET_LEFT_ODD.put("4", new Module(new int[] { 0, 1, 1, 3, 2 }));
         KEYS_LEFT_ODD.add("5");
-        SET_LEFT_ODD.put("5", new Module(new int[] { 0, 1, 2, 3, 1 })); // 0110001
+        // 0110001
+        SET_LEFT_ODD.put("5", new Module(new int[] { 0, 1, 2, 3, 1 }));
         KEYS_LEFT_ODD.add("6");
-        SET_LEFT_ODD.put("6", new Module(new int[] { 0, 1, 1, 1, 4 })); // 0101111
+        // 0101111
+        SET_LEFT_ODD.put("6", new Module(new int[] { 0, 1, 1, 1, 4 }));
         KEYS_LEFT_ODD.add("7");
-        SET_LEFT_ODD.put("7", new Module(new int[] { 0, 1, 3, 1, 2 })); // 0111011
+        // 0111011
+        SET_LEFT_ODD.put("7", new Module(new int[] { 0, 1, 3, 1, 2 }));
         KEYS_LEFT_ODD.add("8");
-        SET_LEFT_ODD.put("8", new Module(new int[] { 0, 1, 2, 1, 3 })); // 0110111
+        // 0110111
+        SET_LEFT_ODD.put("8", new Module(new int[] { 0, 1, 2, 1, 3 }));
         KEYS_LEFT_ODD.add("9");
-        SET_LEFT_ODD.put("9", new Module(new int[] { 0, 3, 1, 1, 2 })); // 0001011
+        // 0001011
+        SET_LEFT_ODD.put("9", new Module(new int[] { 0, 3, 1, 1, 2 }));
     }
 
     protected static void initLeftEvenSet() {
         // left side odd parity
         KEYS_LEFT_EVEN.add("0");
-        SET_LEFT_EVEN.put("0", new Module(new int[] { 0, 1, 1, 2, 3 })); // 0100111
+        // 0100111
+        SET_LEFT_EVEN.put("0", new Module(new int[] { 0, 1, 1, 2, 3 }));
         KEYS_LEFT_EVEN.add("1");
-        SET_LEFT_EVEN.put("1", new Module(new int[] { 0, 1, 2, 2, 2 })); // 0110011
+        // 0110011
+        SET_LEFT_EVEN.put("1", new Module(new int[] { 0, 1, 2, 2, 2 }));
         KEYS_LEFT_EVEN.add("2");
-        SET_LEFT_EVEN.put("2", new Module(new int[] { 0, 2, 2, 1, 2 })); // 0011011
+        // 0011011
+        SET_LEFT_EVEN.put("2", new Module(new int[] { 0, 2, 2, 1, 2 }));
         KEYS_LEFT_EVEN.add("3");
-        SET_LEFT_EVEN.put("3", new Module(new int[] { 0, 1, 1, 4, 1 })); // 0100001
+        // 0100001
+        SET_LEFT_EVEN.put("3", new Module(new int[] { 0, 1, 1, 4, 1 }));
         KEYS_LEFT_EVEN.add("4");
-        SET_LEFT_EVEN.put("4", new Module(new int[] { 0, 2, 3, 1, 1 })); // 0011101
+        // 0011101
+        SET_LEFT_EVEN.put("4", new Module(new int[] { 0, 2, 3, 1, 1 }));
         KEYS_LEFT_EVEN.add("5");
-        SET_LEFT_EVEN.put("5", new Module(new int[] { 0, 1, 3, 2, 1 })); // 0111001
+        // 0111001
+        SET_LEFT_EVEN.put("5", new Module(new int[] { 0, 1, 3, 2, 1 }));
         KEYS_LEFT_EVEN.add("6");
-        SET_LEFT_EVEN.put("6", new Module(new int[] { 0, 4, 1, 1, 1 })); // 0000101
+        // 0000101
+        SET_LEFT_EVEN.put("6", new Module(new int[] { 0, 4, 1, 1, 1 }));
         KEYS_LEFT_EVEN.add("7");
-        SET_LEFT_EVEN.put("7", new Module(new int[] { 0, 2, 1, 3, 1 })); // 0010001
+        // 0010001
+        SET_LEFT_EVEN.put("7", new Module(new int[] { 0, 2, 1, 3, 1 }));
         KEYS_LEFT_EVEN.add("8");
-        SET_LEFT_EVEN.put("8", new Module(new int[] { 0, 3, 1, 2, 1 })); // 0001001
+        // 0001001
+        SET_LEFT_EVEN.put("8", new Module(new int[] { 0, 3, 1, 2, 1 }));
         KEYS_LEFT_EVEN.add("9");
-        SET_LEFT_EVEN.put("9", new Module(new int[] { 0, 2, 1, 1, 3 })); // 0010111
+        // 0010111
+        SET_LEFT_EVEN.put("9", new Module(new int[] { 0, 2, 1, 1, 3 }));
     }
 
     /**
      * Returns the module that represents the specified character.
-     * 
+     *
      * @param key
      *            The data character to get the encoding module for
      * @param position
@@ -153,25 +174,16 @@ final class EAN13ModuleFactory extends ModuleFactory {
      */
     public static Module getModule(String firstChar, String key, int position) {
         Module module = null;
-
-        /*
-         * with the human readble, the left side has 7 chars, but the encoding
-         * only has 6. this is due to the fact that the first char of the left
-         * side is not encoded.
-         */
-
         if (position + 1 > LEFT_WIDTH_EAN) {
             module = (Module) SET_RIGHT.get(key);
         } else {
             int[] parityRef = PARITY_TABLE.get(firstChar);
-
             if (parityRef[position - 1] == ODD) {
                 module = SET_LEFT_ODD.get(key);
             } else {
                 module = SET_LEFT_EVEN.get(key);
             }
         }
-
         module.setSymbol(key);
         return module;
     }
@@ -179,29 +191,26 @@ final class EAN13ModuleFactory extends ModuleFactory {
     /**
      * Indicates whether the given key is represented in the default encoding
      * table that this module factory contains.
-     * 
+     *
      * @return True if the key has a direct module encoding, false if not
      */
     public static boolean hasModule(String key) {
         if (KEYS_RIGHT.indexOf(key) > -1) {
             return true;
         }
-
         if (KEYS_LEFT_ODD.indexOf(key) > -1) {
             return true;
         }
-
         if (KEYS_LEFT_EVEN.indexOf(key) > -1) {
             return true;
         }
-
         return false;
     }
 
     /**
      * Returns the encoded module at the given index position. This is used to
      * get the encoded checksum character.
-     * 
+     *
      * @param index
      *            The index of the module required
      * @return The module at the specified index
@@ -211,7 +220,6 @@ final class EAN13ModuleFactory extends ModuleFactory {
             return getModule((String) KEYS_RIGHT.get(index), index);
         }
         int[] parityRef = PARITY_TABLE.get(firstChar);
-
         if (parityRef[index - 1] == ODD) {
             return getModule(KEYS_LEFT_ODD.get(index), index);
         }
@@ -222,7 +230,7 @@ final class EAN13ModuleFactory extends ModuleFactory {
      * Indicates whether the given character is valid for this barcode or not.
      * This basically just checks to see whether the key is in the list of
      * encoded characters.
-     * 
+     *
      * @param key
      *            The key to check for validity
      * @return True if the key is valid, false otherwise
@@ -231,15 +239,12 @@ final class EAN13ModuleFactory extends ModuleFactory {
         if (KEYS_RIGHT.indexOf(key) > -1) {
             return true;
         }
-
         if (KEYS_LEFT_ODD.indexOf(key) > -1) {
             return true;
         }
-
         if (KEYS_LEFT_EVEN.indexOf(key) > -1) {
             return true;
         }
-
         return false;
     }
 }
